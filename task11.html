@@ -1,0 +1,30 @@
+<html>
+    <body>
+        <form onsubmit="savetolocalstorage(event)">
+            <label>Name:</label>
+            <input type="text" name="username" required></input><br>
+            <label>Email:</label>
+            <input type="email" name="email" required></input><br>
+            <label>Mob Num:</label>
+            <input type="tel" name="MobNo" required></input><br>
+            <button>Submit</button>
+        </form>
+        <script>
+            function savetolocalstorage(event)
+            {
+                event.preventDefault();
+                const uname=event.target.username.value;
+                const email=event.target.email.value;
+                const MobNo=event.target.MobNo.value;
+                let obj=
+                {
+                    name:uname,
+                    email:email,
+                    phonenum:MobNo
+                };
+                localStorage.setItem('userdetails', JSON.stringify(obj));
+
+            }
+        </script>
+    </body>
+</html>
