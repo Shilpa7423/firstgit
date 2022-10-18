@@ -1,0 +1,47 @@
+<html>
+    <body>
+        <form onsubmit="savetolocalstorage(event)">
+            <label>Name:</label>
+            <input type="text" name="username" required></input><br>
+            <label>Email:</label>
+            <input type="email" name="email" required></input><br>
+            <button>Submit</button>
+            <ul id="newusers"></ul>
+        </form>
+        <script>
+            function savetolocalstorage(event)
+            {
+                event.preventDefault();
+                const uname=event.target.username.value;
+                const email=event.target.email.value;
+                let obj=
+                {
+                    name:uname,
+                    email:email,
+                };
+                let userdetails=JSON.stringify(obj);
+                localStorage.setItem(email, userdetails);
+                // to display details on page after each submission
+                const parentnode=document.getElementById('newusers');
+                const child=`<li> ${obj.name} ${obj.email}</li>`
+                parentnode.innerHTML=parentnode.innerHTML+child;
+              
+            }
+            // to display details on page even after refresh
+            Object.keys(localStorage).forEach((email) => 
+            {
+
+            stringifiedDetailsOfPeople = localStorage.getItem(email);
+            detailsOfPeople = JSON.parse(stringifiedDetailsOfPeople);
+            adduser(detailsOfPeople);
+        });
+            
+           function adduser(userss)
+          {
+           const parentnode=document.getElementById('newusers');
+           const child=`<li> ${userss.name} ${userss.email}</li>`
+           parentnode.innerHTML=parentnode.innerHTML+child;
+          }
+        </script>
+    </body>
+</html>
