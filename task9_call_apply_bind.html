@@ -1,0 +1,60 @@
+
+    let fullName= function(age,city)
+{
+    console.log(this.firstName+" "+this.lastName+" from "+city+" and age is "+age);
+}
+
+let name={
+    firstName:"Shilpa",
+    lastName:"Chand"
+};
+
+//call
+fullName.call(name,24,"Bangalore");
+
+//apply
+fullName.apply(name,["24","Bangalore"]);
+
+//bind 
+let newfunc= fullName.bind(name); 
+ //let newfunc= fullName.bind(name,30,"punjab");
+console.log(newfunc);
+newfunc(30,"punjab");
+
+/////////////
+let Student={age:20};
+let printAge = function()
+{
+    console.log("Age of student is "+this.age);
+}
+
+let newPrintAge= printAge.bind(Student);
+newPrintAge();
+
+////currying
+
+let add= function(a,b)
+{
+    console.log(a+b);
+}
+
+let add25= add.bind(this);
+add25(2,5);
+
+let add56= add.bind(this,5);
+add56(6);
+
+let add2= add.bind();
+add2(2,8);
+//using closures
+
+let multiply= function(x)
+{
+    return function(y)
+    {
+        console.log(x*y);
+    }
+}
+let multiplyBy82= multiply(8);
+multiplyBy82(2);
+
