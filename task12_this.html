@@ -17,6 +17,21 @@ class Student
          else
          console.log(`${this.name} is not eligible of age ${this.age}`);
     }
+    placementseligible(minmarks)
+    { 
+        console.log(this);
+         return (minage) =>
+         {
+           if(this.marks>minmarks && this.age>minage)
+           {
+           console.log(this.name+" is ready for placements");
+           }
+        else
+        {
+        console.log(this.name+" is not ready for placements");
+        }
+         }
+    }
     static counting()
     {
         return Student.count++;
@@ -24,13 +39,18 @@ class Student
 
 }
 const S1=new Student("ahilpa",90,1123,49);
-const S2=new Student("bhilpa",34,1123,30);
+const S2=new Student("bhilpa",24,1123,30);
 const S3=new Student("chilpa",44,9123,100);
-const S4=new Student("dhilpa",54,3123,20);
-const S5=new Student("ehilpa",64,5123,40);
+const S4=new Student("dhilpa",4,3123,20);
+const S5=new Student("ehilpa",18,5123,41);
 S1.eligibility();
 S2.eligibility();
 S3.eligibility();
 S4.eligibility();
 S5.eligibility();
 console.log(Student.counting());
+S1.placementseligible(40)(18);
+S2.placementseligible(40)(18);
+S3.placementseligible(40)(18);
+S4.placementseligible(40)(18);
+S5.placementseligible(40)(18);
