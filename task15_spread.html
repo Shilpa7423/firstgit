@@ -1,0 +1,27 @@
+
+studentobj = {
+
+	'yash': 26,
+
+	'vaibhav': 24,
+
+	'rajesh' : 25,
+
+	}
+
+function findaverageage(studentObj)
+{
+const arr=Object.values(studentobj); 
+//const keysarr=Object.keys(studentobj); 
+//keysarr.forEach((ele)=> console.log(studentobj[ele]));
+let sum=0,count=0,averageAge=0;
+arr.forEach((e)=>{
+    sum+=e;
+    count++;})
+
+    averageAge=sum/count;
+    return averageAge;
+
+}
+var d=findaverageage();
+console.log(d);
