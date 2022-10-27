@@ -32,9 +32,13 @@
         }
         localStorage.setItem(amount,JSON.stringify(obj));
         showUserOnScreen(obj);
+        
      }
      function  showUserOnScreen(user)
      {
+        document.getElementById('amt').value = "";
+        document.getElementById('desc').value = "";
+        document.getElementById('cat').value ="";
         parent=document.getElementById("listuser");
         child=`<li id=${user.amount}> ${user.amount} - ${user.description} - ${user.category} 
             <button onClick=delet('${user.amount}')>Delete Expense</button>
