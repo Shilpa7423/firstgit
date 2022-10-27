@@ -1,0 +1,83 @@
+<html>
+    <head>
+      <title>Expense Tracker</title>
+   </head>
+   <body>
+    <form onsubmit="saveToLocalStorage(event)">
+        <label>Choose expenseamount:</label>
+        <input id="amt" name="amot" type="text" required/>
+        <label>Choose description:</label>
+        <input id="desc" name="desci" type="text" required/>
+        <label>Choose a category:</label>
+        <select id="cat" name="cati">
+            <option value="Movie">Movie</option>
+            <option value="Temple">Temple</option>
+            <option value="Race">Race</option>
+            <option value="Hotel">Hotel</option>
+        </select>
+       <input type="submit" value="Add Expense"/>
+    </form>
+    <ul id="listuser">
+   <script>
+     function saveToLocalStorage(event)
+     {
+        event.preventDefault();
+        const amount=event.target.amot.value;
+        const description=event.target.desci.value;
+        const category=event.target.cati.value;
+        let obj={
+            amount,
+            description,
+            category
+        }
+        localStorage.setItem(amount,JSON.stringify(obj));
+        showUserOnScreen(obj);
+     }
+     function  showUserOnScreen(user)
+     {
+        parent=document.getElementById("listuser");
+        child=`<li id=${user.amount}> ${user.amount} - ${user.description} - ${user.category} 
+            <button onClick=delet('${user.amount}')>Delete Expense</button>
+            <button onClick=edit('${user.amount}','${user.description}','${user.category}')>Edit Expense</button></li>`
+        parent.innerHTML=parent.innerHTML+child;
+     }
+// after refresh
+window.addEventListener('DOMContentLoaded', ()=>
+{
+    Object.keys(localStorage).forEach((ele)=>
+    {
+            stringifiedDetailsOfPeople = localStorage.getItem(ele);
+            console.log( stringifiedDetailsOfPeople);
+            detailsOfPeople = JSON.parse(stringifiedDetailsOfPeople);
+            console.log( detailsOfPeople); 
+            showUserOnScreen(detailsOfPeople)  ;
+
+    })
+})
+
+
+function delet(deluser)
+{
+    console.log(deluser)
+     localStorage.removeItem(deluser);
+    const parentnode=document.getElementById("listuser");
+     const childnode=document.getElementById(deluser)
+     console.log("childnode is "+childnode)
+     if(childnode) 
+     {
+                    parentnode.removeChild(childnode)
+     }
+}
+
+function edit(am, de, ca){
+    
+document.getElementById('amt').value = am;
+document.getElementById('desc').value = de;
+document.getElementById('cat').value =ca;
+delet(am)
+
+}
+   </script>
+</script>
+</body>
+</html>
