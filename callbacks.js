@@ -1,16 +1,20 @@
 const posts=[{title:'Post1',body:'This is post one',createdAt:new Date().getTime()},
 {title:'Post2',body:'This is post two',createdAt:new Date().getTime()}];
-
+let id=0;
 function showPost()
 {
-   setTimeout(()=>{
+   clearInterval(id);
+   id=setInterval(()=>{
     let output="";
-    posts.forEach((post)=>{output+=`<li>${post.title}-last updated ${post.createdAt}</li>`;});
+    for(let i=0;i<posts.length;i++)
+      {
+         output+=`<li>${posts[i].title}-last updated ${(new Date().getTime()-posts[i].createdAt)/1000} seconds ago </li>`;
+      }
     document.body.innerHTML=output;
    },1000);
     
 }
-
+showPost();
 function createPost3(post,callback)
 {
  setTimeout(()=>{
@@ -22,7 +26,7 @@ function createPost4(post,callback)
 {
  setTimeout(()=>{
    posts.push({...post,createdAt:new Date().getTime()});
-   callback();},2000);
+   callback();},6000);
 
 }
 
